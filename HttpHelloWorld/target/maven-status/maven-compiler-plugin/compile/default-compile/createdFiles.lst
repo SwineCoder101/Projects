@@ -1,0 +1,7 @@
+HttpHelloWorld\MessageBuilder.class
+HttpHelloWorld\DateOfBirth.class
+HttpHelloWorld\HttpHelloWorldMain.class
+HttpHelloWorld\BirthdayEntryRepository.class
+HttpHelloWorld\BirthdayEntryController.class
+HttpHelloWorld\BirthdayEntry.class
+HttpHelloWorld\BirthdayEntryService.class
