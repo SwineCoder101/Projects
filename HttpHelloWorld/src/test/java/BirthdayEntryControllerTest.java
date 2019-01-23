@@ -67,7 +67,7 @@ public class BirthdayEntryControllerTest {
 //        ResponseEntity<String> response
 //                = restTemplate.getForEntity(requestURL, String.class);
 
-        restTemplate.put(localHostURL + helloJohnReqStr,birthdayJsonStr);
+       // restTemplate.put(localHostURL + helloJohnReqStr,birthdayJsonStr);
 
 
         //assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
@@ -78,12 +78,12 @@ public class BirthdayEntryControllerTest {
 //        BirthdayGreeting birthdayGreeting =
 //                restTemplate.getForObject(localHostURL + helloJohnReqStr + birthdayJsonStr, BirthdayGreeting.class);
 
-        birthdayEntryService.create(new BirthdayEntry("john","2000-01-01"));
-
-        requestURL = localHostURL + helloJohnReqStr;// + birthdayJsonStr;
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(requestURL, String.class);
-        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
+//        birthdayEntryService.create(new BirthdayEntry("john","2000-01-01"));
+//
+//        requestURL = localHostURL + helloJohnReqStr;// + birthdayJsonStr;
+//        ResponseEntity<String> response
+//                = restTemplate.getForEntity(requestURL, String.class);
+//        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
 
     }
 
