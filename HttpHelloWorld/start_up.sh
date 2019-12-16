@@ -56,14 +56,28 @@ docker exec spring-docker-image
   -e MONGO_APP_PASSWORD="myAppUserPassword" \
   -e MONGO_APP_DATABASE="people" \
   yourname/mongo-rep-set:latest
-  
-#trigger deployment  
-#for_each instance  
-#  send shutdown signal
-#  remove from loadbalancer
-#  wait for shutdown
-#  remove old version
-#  spin up new version
-#  wait for startup
-#  add to loadbalancer
-#done
+
+#docker build -t spring-boot-docker-image
+#docker tag spring-boot-docker-image gcr.io/httphelloworld/spring-docker-image:v2
+#docker push gcr.io/httphelloworld/spring-docker-image:v2
+
+#######################################################################################################################
+#gcr.io/httphelloworld/spring-docker-image
+hostname=gcr.io
+project_id=httphelloworld
+image=spring-docker-image
+tag=v3
+dest_img="${hostname}/${project_id}/${image}"
+dest_img_tag="${dest_img}:${tag}"
+cluster_name="${project_id}-cluster"
+
+docker build -f Dockerfile -t $dest_img_path .
+
+docker push $dest_img_tag
+
+kubectl apply -f deployment/rest-service/Deployment.yaml
+
+gcloud container clusters create $cluster_name
+kubectl run $cluster_name --image=$dest_img_tag --port=8080
+kubectl expose deployment $cluster_name --type="LoadBalancer"
+kubectl scale deployment $cluster_name --replicas=3
